@@ -1,7 +1,7 @@
 ﻿namespace OrdersApiAppPV012.Services.Interfaces
 {
     // DAO (data-access-object)
-    public interface IDaoBase<T>
+    public interface IDaoBase<T> where T : class
     {
         Task<List<T>> GetAllItems();
 

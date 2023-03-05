@@ -5,10 +5,13 @@ using OrdersApiAppPV012.Services.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// добавление зависимостей
+// добавление зависимости DbContext
 builder.Services.AddDbContext<AppDbContext>();
+
+// регистрация сервисов
 builder.Services.AddTransient<IDaoBase<Client>, DbDaoClient>();
 builder.Services.AddTransient<IDaoBase<Product>, DbDaoProduct>();
+builder.Services.AddTransient<IDaoBase<Order>, DbDaoOrder>();
 
 var app = builder.Build();
 
@@ -67,6 +70,34 @@ app.MapPost("/product/update", async (HttpContext context, IDaoBase<Product> dao
 });
 
 app.MapPost("/product/delete", async (HttpContext context, IDaoBase<Product> dao, Guid id) =>
+{
+    return await dao.DeleteItem(id);
+});
+
+
+// CRUD для Заказа
+
+app.MapGet("/order/all", async (HttpContext context, IDaoBase<Order> dao) =>
+{
+    return await dao.GetAllItems();
+});
+
+app.MapPost("/order/add", async (HttpContext context, IDaoBase<Order> dao, Order order) =>
+{
+    return await dao.AddItem(order);
+});
+
+app.MapGet("/order/get", async (HttpContext context, IDaoBase<Order> dao, Guid id) =>
+{
+    return await dao.GetItemById(id);
+});
+
+app.MapPost("/order/update", async (HttpContext context, IDaoBase<Order> dao, Order order) =>
+{
+    return await dao.UpdateItem(order);
+});
+
+app.MapPost("/order/delete", async (HttpContext context, IDaoBase<Order> dao, Guid id) =>
 {
     return await dao.DeleteItem(id);
 });

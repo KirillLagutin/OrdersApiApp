@@ -7,6 +7,8 @@ namespace OrdersApiAppPV012.Data
     {
         public DbSet<Client> Clients => Set<Client>();
         public DbSet<Product> Products => Set<Product>();
+        public DbSet<Order> Orders => Set<Order>();
+        public DbSet<OrderProduct> OrderProducts => Set<OrderProduct>();
 
         // конфигурация контекста
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
