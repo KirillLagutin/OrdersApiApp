@@ -90,9 +90,6 @@ namespace OrdersApiAppPV012.Data.Migrations
                     b.Property<int>("Article")
                         .HasColumnType("integer");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("numeric");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("text");

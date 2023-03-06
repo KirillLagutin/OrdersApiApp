@@ -8,7 +8,6 @@ namespace OrdersApiAppPV012.Models.Entities
 
         public string Name { get; set; } = "Имя клиента";
 
-        [JsonIgnore]
         public ICollection<Order>? Orders { get; set; }
     }
 }

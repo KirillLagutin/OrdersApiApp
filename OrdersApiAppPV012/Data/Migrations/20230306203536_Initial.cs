@@ -29,7 +29,6 @@ namespace OrdersApiAppPV012.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Title = table.Column<string>(type: "text", nullable: false),
-                    Price = table.Column<decimal>(type: "numeric", nullable: false),
                     Article = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>

@@ -12,7 +12,7 @@ using OrdersApiAppPV012.Data;
 namespace OrdersApiAppPV012.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230305011537_Initial")]
+    [Migration("20230306203536_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -92,9 +92,6 @@ namespace OrdersApiAppPV012.Data.Migrations
 
                     b.Property<int>("Article")
                         .HasColumnType("integer");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("numeric");
 
                     b.Property<string>("Title")
                         .IsRequired()

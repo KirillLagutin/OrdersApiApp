@@ -17,12 +17,9 @@ namespace OrdersApiAppPV012.Services.Repositories
 
 
         // Вернуть все заказы
-        public async Task<List<Order>> GetAllItems()
-        {
-            db.Clients.Load(); // явная выгрузка данных
-                                
-            return await db.Orders.ToListAsync();
-        }
+        public async Task<List<Order>> GetAllItems() =>
+            await db.Orders.ToListAsync();
+
             
         // Вернуть заказ по Id
         public async Task<Order?> GetItemById(Guid id) =>

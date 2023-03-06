@@ -8,7 +8,7 @@
 
         public Guid ProductId { get; set; }
 
-        public int CountProducts { get; set; } = default;
+        public int CountProducts { get; set; }
 
         public Order? Order { get; set; }
 
