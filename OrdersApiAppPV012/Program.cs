@@ -12,6 +12,7 @@ builder.Services.AddDbContext<AppDbContext>();
 builder.Services.AddTransient<IDaoBase<Client>, DbDaoClient>();
 builder.Services.AddTransient<IDaoBase<Product>, DbDaoProduct>();
 builder.Services.AddTransient<IDaoBase<Order>, DbDaoOrder>();
+builder.Services.AddTransient<IDaoBase<OrderProduct>, DbDaoOrderProduct>();
 
 var app = builder.Build();
 
@@ -98,6 +99,34 @@ app.MapPost("/order/update", async (HttpContext context, IDaoBase<Order> dao, Or
 });
 
 app.MapPost("/order/delete", async (HttpContext context, IDaoBase<Order> dao, Guid id) =>
+{
+    return await dao.DeleteItem(id);
+});
+
+
+// CRUD для Заказ-Товара
+
+app.MapGet("/order_product/all", async (HttpContext context, IDaoBase<OrderProduct> dao) =>
+{
+    return await dao.GetAllItems();
+});
+
+app.MapPost("/order_product/add", async (HttpContext context, IDaoBase<OrderProduct> dao, OrderProduct orderProduct) =>
+{
+    return await dao.AddItem(orderProduct);
+});
+
+app.MapGet("/order_product/get", async (HttpContext context, IDaoBase<OrderProduct> dao, Guid id) =>
+{
+    return await dao.GetItemById(id);
+});
+
+app.MapPost("/order_product/update", async (HttpContext context, IDaoBase<OrderProduct> dao, OrderProduct orderProduct) =>
+{
+    return await dao.UpdateItem(orderProduct);
+});
+
+app.MapPost("/order_product/delete", async (HttpContext context, IDaoBase<OrderProduct> dao, Guid id) =>
 {
     return await dao.DeleteItem(id);
 });

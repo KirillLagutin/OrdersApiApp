@@ -29,26 +29,26 @@ namespace OrdersApiAppPV012.Services.Repositories
             await db.Orders.FirstOrDefaultAsync(c => c.Id == id);
 
         // Добавить заказ
-        public async Task<Order> AddItem(Order orders)
+        public async Task<Order> AddItem(Order order)
         {
-            await db.Orders.AddAsync(orders);
+            await db.Orders.AddAsync(order);
             await db.SaveChangesAsync();
-            return orders;
+            return order;
         }
 
         // Обновить заказ
-        public async Task<Order> UpdateItem(Order orders)
+        public async Task<Order> UpdateItem(Order order)
         {
-            db.Orders.Entry(orders).State = EntityState.Modified;
+            db.Orders.Entry(order).State = EntityState.Modified;
             await db.SaveChangesAsync();
-            return orders;
+            return order;
         }
 
         // Удалить заказ
         public async Task<bool> DeleteItem(Guid id)
         {
-            var orders = await db.Orders.FirstOrDefaultAsync(c => c.Id == id);
-            db.Orders.Remove(orders);
+            var order = await db.Orders.FirstOrDefaultAsync(c => c.Id == id);
+            db.Orders.Remove(order);
             await db.SaveChangesAsync();
             return true;
         }
