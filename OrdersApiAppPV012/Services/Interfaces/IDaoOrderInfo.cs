@@ -4,6 +4,6 @@ namespace OrdersApiAppPV012.Services.Interfaces
 {
     public interface IDaoOrderInfo
     {
-        Task<List<string>> GetOrderInfo(Guid orderId);
+        Task<IResult> GetOrderInfo(Guid orderId);
     }
 }

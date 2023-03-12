@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using OrdersApiAppPV012.Data;
 using OrdersApiAppPV012.Models.Entities;
 using OrdersApiAppPV012.Services.Interfaces;
@@ -7,7 +8,7 @@ namespace OrdersApiAppPV012.Services.Repositories.CRUD
 {
     public class DbDaoOrder : IDaoBase<Order>
     {
-        // имплементация dao, работающая с БД
+        // Имплементация dao, работающая с БД
         private readonly AppDbContext db;
 
         public DbDaoOrder(AppDbContext db)
@@ -16,39 +17,69 @@ namespace OrdersApiAppPV012.Services.Repositories.CRUD
         }
 
 
-        // Вернуть все заказы
-        public async Task<IReadOnlyList<Order>> GetAllItems() =>
-            await db.Orders.ToListAsync();
+        // Вернуть список заказов
+        public async Task<IResult> GetAllItems()
+        {
+            var orders = await db.Orders.ToListAsync();
 
+            if (orders.Count == 0)
+            {
+                return Results.NotFound(new { message = "Список пуст" });
+            }
+
+            return Results.Json(orders);
+        }
 
         // Вернуть заказ по Id
-        public async Task<Order?> GetItemById(Guid id) =>
-            await db.Orders.FirstOrDefaultAsync(c => c.Id == id);
+        public async Task<IResult> GetItemById(Guid id)
+        {
+            if (id.GetType() != typeof(Guid))
+            {
+                return Results.BadRequest(new { message = "Неверный ID" });
+            }
 
+            var order = await db.Orders.FirstOrDefaultAsync(c => c.Id == id);
+
+            if (order is null)
+            {
+                return Results.NotFound(new { message = "Нет элемента по такому ID" });
+            }
+
+            return Results.Json(order);
+        }
+            
         // Добавить заказ
-        public async Task<Order> AddItem(Order order)
+        public async Task<IResult> AddItem(Order order)
         {
             await db.Orders.AddAsync(order);
             await db.SaveChangesAsync();
-            return order;
+
+            return Results.Json(order);
         }
 
         // Обновить заказ
-        public async Task<Order> UpdateItem(Order order)
+        public async Task<IResult> UpdateItem(Order order)
         {
             db.Orders.Entry(order).State = EntityState.Modified;
             await db.SaveChangesAsync();
-            return order;
+
+            return Results.Json(order);
         }
 
         // Удалить заказ
-        public async Task<bool> DeleteItem(Guid id)
+        public async Task<IResult> DeleteItem(Guid id)
         {
             var order = await db.Orders.FirstOrDefaultAsync(c => c.Id == id);
+
+            if (order is null)
+            {
+                return Results.NotFound(new { message = "Нет элемента по такому ID" });
+            }
+
             db.Orders.Remove(order);
             await db.SaveChangesAsync();
-            return true;
-        }
 
+            return Results.Ok(new { message = "Элемент удалён" });
+        }
     }
 }

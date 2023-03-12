@@ -3,14 +3,14 @@
     // DAO (data-access-object)
     public interface IDaoBase<T> where T : class
     {
-        Task<IReadOnlyList<T>> GetAllItems();
+        Task<IResult> GetAllItems();
 
-        Task<T?> GetItemById(Guid id);
+        Task<IResult> GetItemById(Guid id);
 
-        Task<T> AddItem(T entity);
+        Task<IResult> AddItem(T entity);
 
-        Task<T> UpdateItem(T entity);
+        Task<IResult> UpdateItem(T entity);
 
-        Task<bool> DeleteItem(Guid id);
+        Task<IResult> DeleteItem(Guid id);
     }
 }

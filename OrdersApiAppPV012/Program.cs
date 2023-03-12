@@ -6,15 +6,19 @@ using OrdersApiAppPV012.Services.Repositories.CRUD;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// добавление зависимости DbContext
+// Добавление зависимости DbContext //
 builder.Services.AddDbContext<AppDbContext>();
 
-// регистрация сервисов
+// Регистрация сервисов //
+
+// CRUD
 builder.Services.AddTransient<IDaoBase<Client>, DbDaoClient>();
 builder.Services.AddTransient<IDaoBase<Product>, DbDaoProduct>();
 builder.Services.AddTransient<IDaoBase<Order>, DbDaoOrder>();
 builder.Services.AddTransient<IDaoBase<OrderProduct>, DbDaoOrderProduct>();
-builder.Services.AddTransient<IDaoOrderInfo, DaoOrderInfo>();
+// Дополнительная логика
+builder.Services.AddTransient<IDaoOrderInfo, DaoOrderInfo>(); // Инфа о заказе
+builder.Services.AddTransient<IDaoOrderReceipt, DaoOrderReceipt>(); // Чек заказа
 
 var app = builder.Build();
 
@@ -22,8 +26,9 @@ var app = builder.Build();
 app.MapGet("/", () => "МОЙ МАГАЗИН");
 
 
-// CRUD для Клиента
+// CRUD Эндпоинты //
 
+// Клент
 app.MapGet("/client/all", async (HttpContext context, IDaoBase<Client> dao) =>
 {
     return await dao.GetAllItems();
@@ -50,8 +55,7 @@ app.MapPost("/client/delete", async (HttpContext context, IDaoBase<Client> dao, 
 });
 
 
-// CRUD для Продукта
-
+// Продукт
 app.MapGet("/product/all", async (HttpContext context, IDaoBase<Product> dao) =>
 {
     return await dao.GetAllItems();
@@ -78,9 +82,8 @@ app.MapPost("/product/delete", async (HttpContext context, IDaoBase<Product> dao
 });
 
 
-// CRUD для Заказа
-
-app.MapGet("/order/all", async (HttpContext context, IDaoBase<Order> dao) =>
+// Заказ
+app.MapGet("/order/all", async (HttpContext context,  IDaoBase<Order> dao) =>
 {
     return await dao.GetAllItems();
 });
@@ -106,8 +109,7 @@ app.MapPost("/order/delete", async (HttpContext context, IDaoBase<Order> dao, Gu
 });
 
 
-// CRUD для Заказ-Товара
-
+// Заказ-Товар
 app.MapGet("/order_product/all", async (HttpContext context, IDaoBase<OrderProduct> dao) =>
 {
     return await dao.GetAllItems();
@@ -134,12 +136,18 @@ app.MapPost("/order_product/delete", async (HttpContext context, IDaoBase<OrderP
 });
 
 
-///// Дополнительная логика /////
+// Дополнительная логика //
 
 // Инфа о Заказе
 app.MapGet("/order/info", async (HttpContext context, IDaoOrderInfo dao, Guid id) =>
 {
     return await dao.GetOrderInfo(id);
+});
+
+// Чек Заказа
+app.MapGet("/order/receipt", async (HttpContext context, IDaoOrderReceipt dao, Guid id) =>
+{
+    return await dao.GetOrderReceipt(id);
 });
 
 

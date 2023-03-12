@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OrdersApiAppPV012.Data;
-using OrdersApiAppPV012.Models.Entities;
 using OrdersApiAppPV012.Services.Interfaces;
 
 namespace OrdersApiAppPV012.Services.Repositories
@@ -14,17 +13,23 @@ namespace OrdersApiAppPV012.Services.Repositories
             this.db = db;
         }
 
-        public async Task<List<string>> GetOrderInfo(Guid orderId)
+        public async Task<IResult> GetOrderInfo(Guid orderId)
         {
-            var order = db.Orders.FirstOrDefault(o => o.Id == orderId);
+            var order = await db.Orders.FirstOrDefaultAsync(o => o.Id == orderId);
 
+            if (order is null)
+            {
+                return Results.NotFound(new {message = $"Нет заказа с ID = {orderId}"}); 
+            }
+
+            // Получаем расшивки с нашим заказом (и с данными о продукте)
             var orderProducts = db.OrderProducts
                 .Where(o => o.OrderId == orderId)
                 .Include(p => p.Product);
-                //.Include(o => o.Order);
 
             // Инфа о заказе
             var orderInfo = new List<string>();
+
             // Количество всех товаров в заказе
             int countProducns = 0;
 
@@ -33,7 +38,7 @@ namespace OrdersApiAppPV012.Services.Repositories
             foreach (var product in orderProducts)
             {
                 orderInfo.Add(
-                    $"Товар: {product.Product.Title} | " +
+                    $"Товар: {product.Product?.Title} | " +
                     $"Количество: {product.CountProducts} шт"
                 );
                 countProducns += product.CountProducts;
@@ -41,7 +46,7 @@ namespace OrdersApiAppPV012.Services.Repositories
 
             orderInfo.Add($"Всего товаров: {countProducns} шт");
 
-            return orderInfo;
+            return Results.Json(orderInfo);
         }
     }
 }

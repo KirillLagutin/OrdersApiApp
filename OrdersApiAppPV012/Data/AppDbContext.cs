@@ -21,7 +21,7 @@ namespace OrdersApiAppPV012.Data
 
             // устанавливаем для контекста строку подключения
             // инициализируем саму строку подключения
-            string useConnection = configuration.GetSection("UseConnectionString").Value;
+            string? useConnection = configuration.GetSection("UseConnectionString").Value;
 
             // Для подключения базы в контейнере
             //optionsBuilder.UseNpgsql(configuration.GetConnectionString(useConnection));

@@ -5,7 +5,7 @@ using OrdersApiAppPV012.Services.Interfaces;
 
 namespace OrdersApiAppPV012.Services.Repositories.CRUD
 {
-    // имплементация dao, работающая с БД
+    // Имплементация dao, работающая с БД
     public class DbDaoProduct : IDaoBase<Product>
     {
         private readonly AppDbContext db;
@@ -16,37 +16,69 @@ namespace OrdersApiAppPV012.Services.Repositories.CRUD
         }
 
 
-        // Вернуть всех клиентов
-        public async Task<IReadOnlyList<Product>> GetAllItems() =>
-            await db.Products.ToListAsync();
+        // Вернуть список продуктов
+        public async Task<IResult> GetAllItems()
+        {
+            var products = await db.Products.ToListAsync();
 
-        // Вернуть клиента по Id
-        public async Task<Product?> GetItemById(Guid id) =>
-            await db.Products.FirstOrDefaultAsync(c => c.Id == id);
+            if (products.Count == 0)
+            {
+                return Results.NotFound(new { message = "Список пуст" });
+            }
 
-        // Добавить клиента
-        public async Task<Product> AddItem(Product product)
+            return Results.Json(products);
+        }
+
+        // Вернуть продукт по Id
+        public async Task<IResult> GetItemById(Guid id)
+        {
+            if (id.GetType() != typeof(Guid))
+            {
+                return Results.BadRequest(new { message = "Неверный ID" });
+            }
+
+            var product = await db.Products.FirstOrDefaultAsync(c => c.Id == id);
+
+            if (product is null)
+            {
+                return Results.NotFound(new { message = "Нет элемента по такому ID" });
+            }
+
+            return Results.Json(product);
+        }
+
+        // Добавить продукт
+        public async Task<IResult> AddItem(Product product)
         {
             await db.Products.AddAsync(product);
             await db.SaveChangesAsync();
-            return product;
+
+            return Results.Json(product);
         }
 
-        // Обновить клиента
-        public async Task<Product> UpdateItem(Product product)
+        // Обновить продукт
+        public async Task<IResult> UpdateItem(Product product)
         {
             db.Products.Entry(product).State = EntityState.Modified;
             await db.SaveChangesAsync();
-            return product;
+
+            return Results.Json(product);
         }
 
-        // Удалить клиента
-        public async Task<bool> DeleteItem(Guid id)
+        // Удалить продукт
+        public async Task<IResult> DeleteItem(Guid id)
         {
             var product = await db.Products.FirstOrDefaultAsync(c => c.Id == id);
+
+            if (product is null)
+            {
+                return Results.NotFound(new { message = "Нет элемента по такому ID" });
+            }
+
             db.Products.Remove(product);
             await db.SaveChangesAsync();
-            return true;
+
+            return Results.Ok(new { message = "Элемент удалён" });
         }
     }
 }
