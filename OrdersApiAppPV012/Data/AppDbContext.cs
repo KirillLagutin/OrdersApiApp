@@ -18,8 +18,15 @@ namespace OrdersApiAppPV012.Data
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
                 .AddJsonFile("appsettings.json")
                 .Build();
+
             // устанавливаем для контекста строку подключения
             // инициализируем саму строку подключения
+            string useConnection = configuration.GetSection("UseConnectionString").Value;
+
+            // Для подключения базы в контейнере
+            //optionsBuilder.UseNpgsql(configuration.GetConnectionString(useConnection));
+
+            // Для подключения облачной базы
             optionsBuilder.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
         }
     }

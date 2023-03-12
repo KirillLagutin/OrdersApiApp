@@ -3,7 +3,7 @@ using OrdersApiAppPV012.Data;
 using OrdersApiAppPV012.Models.Entities;
 using OrdersApiAppPV012.Services.Interfaces;
 
-namespace OrdersApiAppPV012.Services.Repositories
+namespace OrdersApiAppPV012.Services.Repositories.CRUD
 {
     // имплементация dao, работающая с БД
     public class DbDaoProduct : IDaoBase<Product>
@@ -17,7 +17,7 @@ namespace OrdersApiAppPV012.Services.Repositories
 
 
         // Вернуть всех клиентов
-        public async Task<List<Product>> GetAllItems() =>
+        public async Task<IReadOnlyList<Product>> GetAllItems() =>
             await db.Products.ToListAsync();
 
         // Вернуть клиента по Id

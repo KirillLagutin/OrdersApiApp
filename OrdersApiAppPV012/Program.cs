@@ -2,6 +2,7 @@ using OrdersApiAppPV012.Data;
 using OrdersApiAppPV012.Models.Entities;
 using OrdersApiAppPV012.Services.Interfaces;
 using OrdersApiAppPV012.Services.Repositories;
+using OrdersApiAppPV012.Services.Repositories.CRUD;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.AddTransient<IDaoBase<Client>, DbDaoClient>();
 builder.Services.AddTransient<IDaoBase<Product>, DbDaoProduct>();
 builder.Services.AddTransient<IDaoBase<Order>, DbDaoOrder>();
 builder.Services.AddTransient<IDaoBase<OrderProduct>, DbDaoOrderProduct>();
+builder.Services.AddTransient<IDaoOrderInfo, DaoOrderInfo>();
 
 var app = builder.Build();
 
@@ -129,6 +131,15 @@ app.MapPost("/order_product/update", async (HttpContext context, IDaoBase<OrderP
 app.MapPost("/order_product/delete", async (HttpContext context, IDaoBase<OrderProduct> dao, Guid id) =>
 {
     return await dao.DeleteItem(id);
+});
+
+
+///// Дополнительная логика /////
+
+// Инфа о Заказе
+app.MapGet("/order/info", async (HttpContext context, IDaoOrderInfo dao, Guid id) =>
+{
+    return await dao.GetOrderInfo(id);
 });
 
 

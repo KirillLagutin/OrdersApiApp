@@ -3,7 +3,7 @@
     // DAO (data-access-object)
     public interface IDaoBase<T> where T : class
     {
-        Task<List<T>> GetAllItems();
+        Task<IReadOnlyList<T>> GetAllItems();
 
         Task<T?> GetItemById(Guid id);
 

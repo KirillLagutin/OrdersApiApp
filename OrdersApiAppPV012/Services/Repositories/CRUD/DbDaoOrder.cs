@@ -3,7 +3,7 @@ using OrdersApiAppPV012.Data;
 using OrdersApiAppPV012.Models.Entities;
 using OrdersApiAppPV012.Services.Interfaces;
 
-namespace OrdersApiAppPV012.Services.Repositories
+namespace OrdersApiAppPV012.Services.Repositories.CRUD
 {
     public class DbDaoOrder : IDaoBase<Order>
     {
@@ -17,10 +17,10 @@ namespace OrdersApiAppPV012.Services.Repositories
 
 
         // Вернуть все заказы
-        public async Task<List<Order>> GetAllItems() =>
+        public async Task<IReadOnlyList<Order>> GetAllItems() =>
             await db.Orders.ToListAsync();
 
-            
+
         // Вернуть заказ по Id
         public async Task<Order?> GetItemById(Guid id) =>
             await db.Orders.FirstOrDefaultAsync(c => c.Id == id);
@@ -49,6 +49,6 @@ namespace OrdersApiAppPV012.Services.Repositories
             await db.SaveChangesAsync();
             return true;
         }
-        
+
     }
 }
