@@ -23,8 +23,7 @@ builder.Services.AddTransient<IDaoOrderReceipt, DaoOrderReceipt>(); // Чек заказ
 var app = builder.Build();
 
 
-app.MapGet("/", () => "МОЙ МАГАЗИН");
-
+app.MapGet("/", () => "Лучше тестить в постмане");
 
 // CRUD Эндпоинты //
 

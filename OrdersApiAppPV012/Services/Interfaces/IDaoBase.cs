@@ -1,6 +1,6 @@
 ﻿namespace OrdersApiAppPV012.Services.Interfaces
 {
-    // DAO (data-access-object)
+    // Базовый CRUD интерфейс
     public interface IDaoBase<T> where T : class
     {
         Task<IResult> GetAllItems();
