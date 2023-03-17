@@ -1,5 +1,5 @@
 ## Техническое задание:
-## [API "Заказы](https://ordersapiapp-kirilllagutin.amvera.io/)".
+## [API Заказы](https://ordersapiapp-kirilllagutin.amvera.io/)".
 БД содержит 4 таблицы:
 1) Товар - содержит id, наименование товар, артикул (число) - 
 2) Заказ - содержит id, id клиента (связь), описание заказа (description)
