@@ -1,8 +1,15 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using OrdersApiAppPV012.Data;
 using OrdersApiAppPV012.Models.Entities;
+using OrdersApiAppPV012.Services;
 using OrdersApiAppPV012.Services.Interfaces;
 using OrdersApiAppPV012.Services.Repositories;
 using OrdersApiAppPV012.Services.Repositories.CRUD;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,10 +27,51 @@ builder.Services.AddTransient<IDaoBase<OrderProduct>, DbDaoOrderProduct>();
 builder.Services.AddTransient<IDaoOrderInfo, DaoOrderInfo>(); // Инфа о заказе
 builder.Services.AddTransient<IDaoOrderReceipt, DaoOrderReceipt>(); // Чек заказа
 
+// JWT
+builder.Services.AddAuthorization();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            // указывает, будет ли валидироваться издатель при валидации токена
+            ValidateIssuer = true,
+            // строка, представляющая издателя
+            ValidIssuer = AuthOptions.ISSUER,
+            // будет ли валидироваться потребитель токена
+            ValidateAudience = true,
+            // установка потребителя токена
+            ValidAudience = AuthOptions.AUDIENCE,
+            // будет ли валидироваться время существования
+            ValidateLifetime = true,
+            // установка ключа безопасности
+            IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+            // валидация ключа безопасности
+            ValidateIssuerSigningKey = true,
+        };
+    });
+
 var app = builder.Build();
 
+app.UseAuthentication();
+app.UseAuthorization();
 
-app.MapGet("/", () => "Лучше тестить в постмане");
+app.Map("/login/{username}", (string username) =>
+{
+    var claims = new List<Claim> { new Claim(ClaimTypes.Name, username) };
+    // создаем JWT-токен
+    var jwt = new JwtSecurityToken(
+            issuer: AuthOptions.ISSUER,
+            audience: AuthOptions.AUDIENCE,
+            claims: claims,
+            expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(2)),
+            signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
+
+    return new JwtSecurityTokenHandler().WriteToken(jwt);
+});
+
+
+app.MapGet("/",  () => "Order Api");
 
 // CRUD Эндпоинты //
 
@@ -43,7 +91,7 @@ app.MapGet("/client/get", async (HttpContext context, IDaoBase<Client> dao, Guid
     return await dao.GetItemById(id);
 });
 
-app.MapPost("/client/update", async (HttpContext context, IDaoBase<Client> dao, Client client) =>
+app.MapPost("/client/update",  async (HttpContext context, IDaoBase<Client> dao, Client client) =>
 {
     return await dao.UpdateItem(client);
 });
@@ -138,13 +186,13 @@ app.MapPost("/order_product/delete", async (HttpContext context, IDaoBase<OrderP
 // Дополнительная логика //
 
 // Инфа о Заказе
-app.MapGet("/order/info", async (HttpContext context, IDaoOrderInfo dao, Guid id) =>
+app.MapGet("/order/info", [Authorize] async (HttpContext context, IDaoOrderInfo dao, Guid id) =>
 {
     return await dao.GetOrderInfo(id);
 });
 
 // Чек Заказа
-app.MapGet("/order/receipt", async (HttpContext context, IDaoOrderReceipt dao, Guid id) =>
+app.MapGet("/order/receipt", [Authorize] async (HttpContext context, IDaoOrderReceipt dao, Guid id) =>
 {
     return await dao.GetOrderReceipt(id);
 });

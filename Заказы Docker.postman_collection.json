@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "eca55750-6fa7-47ec-964a-14e948a4d824",
-		"name": "Заказы",
+		"_postman_id": "36e54636-856f-46e5-9514-1d0a02bfeb0a",
+		"name": "Заказы Docker",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25316008"
 	},
@@ -15,12 +15,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7287/client/all",
+							"raw": "https://localhost:5005/client/all",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "7287",
+							"port": "5005",
 							"path": [
 								"client",
 								"all"
@@ -44,12 +44,12 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7287/client/add",
+							"raw": "https://localhost:5005/client/add",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "7287",
+							"port": "5005",
 							"path": [
 								"client",
 								"add"
@@ -64,12 +64,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7287/client/get?id=6e6391de-cff6-4d57-9de2-505f759d2dc3",
+							"raw": "https://localhost:5005/client/get?id=6e6391de-cff6-4d57-9de2-505f759d2dc3",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "7287",
+							"port": "5005",
 							"path": [
 								"client",
 								"get"
@@ -99,12 +99,12 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7287/client/update",
+							"raw": "https://localhost:5005/client/update",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "7287",
+							"port": "5005",
 							"path": [
 								"client",
 								"update"
@@ -119,12 +119,12 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7287/client/delete?id=7e8bc961-f17f-427b-8783-001267eb754e",
+							"raw": "https://localhost:5005/client/delete?id=6a1f8dfb-a94a-43b1-b8c3-4b20e291c036",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "7287",
+							"port": "5005",
 							"path": [
 								"client",
 								"delete"
@@ -132,7 +132,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "7e8bc961-f17f-427b-8783-001267eb754e"
+									"value": "6a1f8dfb-a94a-43b1-b8c3-4b20e291c036"
 								}
 							]
 						}
@@ -150,12 +150,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7287/product/all",
+							"raw": "https://localhost:5005/product/all",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "7287",
+							"port": "5005",
 							"path": [
 								"product",
 								"all"
@@ -171,7 +171,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Product 2\",\r\n    \"price\": 12.3,\r\n    \"article\": 222\r\n}",
+							"raw": "{\r\n    \"title\": \"Product 12\",\r\n    \"price\": 12.3,\r\n    \"article\": 1231\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -179,12 +179,12 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7287/product/add",
+							"raw": "https://localhost:5005/product/add",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "7287",
+							"port": "5005",
 							"path": [
 								"product",
 								"add"
@@ -199,12 +199,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7287/product/get?id=6e6391de-cff6-4d57-9de2-505f759d2dc3",
+							"raw": "https://localhost:5005/product/get?id=6e6391de-cff6-4d57-9de2-505f759d2dc3",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "7287",
+							"port": "5005",
 							"path": [
 								"product",
 								"get"
@@ -226,7 +226,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"5e4cadda-f4bf-4bee-a62f-0dca9f39e353\",\r\n    \"title\": \"Update Title 1\",\r\n    \"price\": 99,\r\n    \"article\": 11\r\n}",
+							"raw": "{\r\n    \"id\": \"38d4644c-1473-4644-acf3-2d013ed6a44f\",\r\n    \"title\": \"Update Title 1\",\r\n    \"price\": 99.99,\r\n    \"article\": 111\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -234,12 +234,12 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7287/product/update",
+							"raw": "https://localhost:5005/product/update",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "7287",
+							"port": "5005",
 							"path": [
 								"product",
 								"update"
@@ -254,12 +254,12 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7287/product/delete?id=5e4cadda-f4bf-4bee-a62f-0dca9f39e353",
+							"raw": "https://localhost:5005/product/delete?id=19b1507c-3b51-4947-8edb-9a683b52255e",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "7287",
+							"port": "5005",
 							"path": [
 								"product",
 								"delete"
@@ -267,7 +267,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "5e4cadda-f4bf-4bee-a62f-0dca9f39e353"
+									"value": "19b1507c-3b51-4947-8edb-9a683b52255e"
 								}
 							]
 						}
@@ -285,12 +285,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7287/order/all",
+							"raw": "https://localhost:5005/order/all",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "7287",
+							"port": "5005",
 							"path": [
 								"order",
 								"all"
@@ -306,7 +306,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"description\": \"Description order 1\",\r\n    \"clientId\": \"3cdfaacc-3bda-4ac8-b491-846f83660c17\"\r\n}",
+							"raw": "{\r\n    \"description\": \"Description order 3\",\r\n    \"clientId\": \"e00d244e-2a7a-4899-b7a3-21d9996e3f58\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -314,12 +314,12 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7287/order/add",
+							"raw": "https://localhost:5005/order/add",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "7287",
+							"port": "5005",
 							"path": [
 								"order",
 								"add"
@@ -334,12 +334,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7287/order/get?id=528ef625-fcbb-455d-9e79-b010a5712a02",
+							"raw": "https://localhost:5005/order/get?id=528ef625-fcbb-455d-9e79-b010a5712a02",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "7287",
+							"port": "5005",
 							"path": [
 								"order",
 								"get"
@@ -361,7 +361,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"b62a43bc-82f7-45c5-a921-8627211f446c\",\r\n    \"description\": \"Description order update 1\",\r\n    \"clientId\": \"b62a43bc-82f7-45c5-a921-8627211f446c\"\r\n}",
+							"raw": "{\r\n    \"id\": \"ce1075d8-aaa6-477b-9b4f-c788cd5c3cd9\",\r\n    \"description\": \"Description order update client 2\",\r\n    \"clientId\": \"e00d244e-2a7a-4899-b7a3-21d9996e3f58\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -369,12 +369,12 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7287/order/update",
+							"raw": "https://localhost:5005/order/update",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "7287",
+							"port": "5005",
 							"path": [
 								"order",
 								"update"
@@ -389,12 +389,12 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7287/order/delete?id=5e4cadda-f4bf-4bee-a62f-0dca9f39e353",
+							"raw": "https://localhost:5005/order/delete?id=ce1075d8-aaa6-477b-9b4f-c788cd5c3cd9",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "7287",
+							"port": "5005",
 							"path": [
 								"order",
 								"delete"
@@ -402,7 +402,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "5e4cadda-f4bf-4bee-a62f-0dca9f39e353"
+									"value": "ce1075d8-aaa6-477b-9b4f-c788cd5c3cd9"
 								}
 							]
 						}
@@ -420,12 +420,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7287/order_product/all",
+							"raw": "https://localhost:5005/order_product/all",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "7287",
+							"port": "5005",
 							"path": [
 								"order_product",
 								"all"
@@ -441,7 +441,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"orderId\": \"7a5d78da-d89e-4034-8c3d-1ed84e4da45e\",\r\n    \"productId\": \"7a5d78da-d89e-4034-8c3d-1ed84e4da45c\",\r\n    \"countProducts\": 1\r\n}",
+							"raw": "{\r\n    \"orderId\": \"9dc43090-d814-499f-8de1-172dc337f542\",\r\n    \"productId\": \"6764d835-8016-4544-bcd3-91093e6d5e4e\",\r\n    \"countProducts\": 3\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -449,12 +449,12 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7287/order_product/add",
+							"raw": "https://localhost:5005/order_product/add",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "7287",
+							"port": "5005",
 							"path": [
 								"order_product",
 								"add"
@@ -469,12 +469,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7287/order_product/get?id=6e6391de-cff6-4d57-9de2-505f759d2dc3",
+							"raw": "https://localhost:5005/order_product/get?id=6e6391de-cff6-4d57-9de2-505f759d2dc3",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "7287",
+							"port": "5005",
 							"path": [
 								"order_product",
 								"get"
@@ -504,12 +504,12 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7287/order_product/update",
+							"raw": "https://localhost:5005/order_product/update",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "7287",
+							"port": "5005",
 							"path": [
 								"order_product",
 								"update"
@@ -524,12 +524,12 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7287/order_product/delete?id=5e4cadda-f4bf-4bee-a62f-0dca9f39e353",
+							"raw": "https://localhost:5005/order_product/delete?id=5e4cadda-f4bf-4bee-a62f-0dca9f39e353",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "7287",
+							"port": "5005",
 							"path": [
 								"order_product",
 								"delete"
@@ -553,7 +553,25 @@
 					"name": "Инфа о Заказе",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5005/order/info?id=9dc43090-d814-499f-8de1-172dc337f542",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5005",
+							"path": [
+								"order",
+								"info"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "9dc43090-d814-499f-8de1-172dc337f542"
+								}
+							]
+						}
 					},
 					"response": []
 				},
@@ -563,12 +581,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7287/order/receipt?id=9dc43090-d814-499f-8de1-172dc337f542",
+							"raw": "https://localhost:5005/order/receipt?id=9dc43090-d814-499f-8de1-172dc337f542",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "7287",
+							"port": "5005",
 							"path": [
 								"order",
 								"receipt"
@@ -584,6 +602,22 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Домашняя",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5005",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5005"
+				}
+			},
+			"response": []
 		}
 	]
 }

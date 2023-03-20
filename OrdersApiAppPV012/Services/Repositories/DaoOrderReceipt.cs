@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OrdersApiAppPV012.Data;
+using OrdersApiAppPV012.Models;
 using OrdersApiAppPV012.Services.Interfaces;
 
 namespace OrdersApiAppPV012.Services.Repositories
@@ -30,26 +31,25 @@ namespace OrdersApiAppPV012.Services.Repositories
                 .Include(p => p.Product);
 
             // Чек заказа
-            var check = new List<string>();
-
-            // Общая сумма заказа
-            decimal totalSum = 0;
-
-            check.Add($"Описание заказа: {order.Description}");
-
+            var check = new OrderReceipt()
+            {
+                Id = orderId,
+                ProductTitle = new(),
+                ProductCount = new(),
+                Price = new(),
+                TotalSum = 0
+            };
+            // Добавляем в чек инфу с расшивки
             foreach (var product in orderProducts)
             {
-                check.Add(
-                    $"Товар: {product.Product?.Title} | " +
-                    $"{product.CountProducts} шт. | " +
-                    $"Цена: {product.Product?.Price} р."
-                );
-                totalSum += product.CountProducts * product.Product.Price;
+                check.ProductTitle.Add(product.Product.Title);
+                check.ProductCount.Add(product.CountProducts);
+                check.Price.Add(product.Product.Price);
+
+                check.TotalSum += product.CountProducts * product.Product.Price;
             }
 
-            check.Add($"Общая сумма заказа: {totalSum} р.");
-
-            return Results.Json(check);
+            return Results.Ok(check);
         }
     }
 }

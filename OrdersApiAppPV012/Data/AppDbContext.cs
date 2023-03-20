@@ -10,24 +10,26 @@ namespace OrdersApiAppPV012.Data
         public DbSet<Order> Orders => Set<Order>();
         public DbSet<OrderProduct> OrderProducts => Set<OrderProduct>();
 
-        // конфигурация контекста
+        // Конфигурация контекста
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // получаем файл конфигурации
+            // Получаем файл конфигурации
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            // устанавливаем для контекста строку подключения
-            // инициализируем саму строку подключения
+            // Облачная база, закомментировать 26-ю и 29-ю строку
+            string useConnection = "DefaultConnection";
 
-            // Для подключения базы в контейнере
-            string? useConnection = configuration.GetSection("UseConnectionString").Value;
-            //optionsBuilder.UseNpgsql(configuration.GetConnectionString(useConnection));
+            // База для работы в контейнере, закомментировать 29-ю строку
+             useConnection = "DockerAppLocalhost";
 
-            // Для подключения облачной базы
-            optionsBuilder.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+            // База для билда контейнера
+            useConnection = "DockerAppDb";
+
+            optionsBuilder.UseNpgsql(configuration.GetConnectionString(useConnection) ?? 
+                throw new InvalidOperationException("Connection string 'AppDbContext' not found."));
         }
     }
 }
