@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OrdersApiAppPV012.Data;
+using OrdersApiAppPV012.Models;
 using OrdersApiAppPV012.Services.Interfaces;
 
 namespace OrdersApiAppPV012.Services.Repositories
@@ -21,7 +22,7 @@ namespace OrdersApiAppPV012.Services.Repositories
 
             if (order is null)
             {
-                return Results.NotFound(new {message = $"Нет заказа с ID = {orderId}"}); 
+                return Results.NotFound(new { message = $"Нет заказа с ID = {orderId}" });
             }
 
             // Получаем расшивки с нашим заказом (и с данными о продукте)
@@ -29,26 +30,23 @@ namespace OrdersApiAppPV012.Services.Repositories
                 .Where(op => op.OrderId == orderId)
                 .Include(p => p.Product);
 
-            // Инфа о заказе
-            var orderInfo = new List<string>();
+            // Объект для ответа на основе класса OrderInfo
+            var orderInfo = new OrderInfo()
+            {
+                Id = orderId,
+                OrderDescription = order.Description,
+                ProductTitleAndCount = new(),
+                CountAllProducts = 0
+            };
 
-            // Количество всех товаров в заказе
-            int countProducns = 0;
-
-            orderInfo.Add($"Описание заказа: {order.Description}");
-
+            // Заполняем связку товар-количество из расшивки
             foreach (var product in orderProducts)
             {
-                orderInfo.Add(
-                    $"Товар: {product.Product?.Title} | " +
-                    $"Количество: {product.CountProducts} шт"
-                );
-                countProducns += product.CountProducts;
+                orderInfo.ProductTitleAndCount.Add(product.Product.Title, product.CountProducts);
+                orderInfo.CountAllProducts += product.CountProducts;
             }
 
-            orderInfo.Add($"Всего товаров: {countProducns} шт");
-
-            return Results.Json(orderInfo);
+            return Results.Ok(orderInfo);
         }
     }
 }

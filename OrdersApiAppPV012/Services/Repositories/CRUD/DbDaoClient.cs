@@ -26,7 +26,7 @@ namespace OrdersApiAppPV012.Services.Repositories.CRUD
                 return Results.NotFound(new { message = "Список пуст" });
             }
 
-            return Results.Json(clients);
+            return Results.Ok(clients);
         }
 
         // Вернуть клиента по Id
@@ -44,7 +44,7 @@ namespace OrdersApiAppPV012.Services.Repositories.CRUD
                 return Results.NotFound(new { message = "Нет элемента по такому ID" });
             }
 
-            return Results.Json(client);
+            return Results.Ok(client);
         }
 
         // Добавить клиента
@@ -53,7 +53,7 @@ namespace OrdersApiAppPV012.Services.Repositories.CRUD
             await db.Clients.AddAsync(client);
             await db.SaveChangesAsync();
 
-            return Results.Json(client);
+            return Results.Ok(client);
         }
 
         // Обновить клиента
@@ -62,7 +62,7 @@ namespace OrdersApiAppPV012.Services.Repositories.CRUD
             db.Clients.Entry(client).State = EntityState.Modified;
             await db.SaveChangesAsync();
 
-            return Results.Json(client);
+            return Results.Ok(client);
         }
 
         // Удалить клиента
