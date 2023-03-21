@@ -1,0 +1,661 @@
+{
+	"info": {
+		"_postman_id": "eca55750-6fa7-47ec-964a-14e948a4d824",
+		"name": "Заказы",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25316008"
+	},
+	"item": [
+		{
+			"name": "CRUD для Клиента",
+			"item": [
+				{
+					"name": "Список всех клиентов",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7287/client/all?Authorization",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"client",
+								"all"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создать клиента",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Clien 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7287/client/add",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"client",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Показать клиента",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7287/client/get?id=6e6391de-cff6-4d57-9de2-505f759d2dc3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"client",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "6e6391de-cff6-4d57-9de2-505f759d2dc3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Обновить клиента",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"7e8bc961-f17f-427b-8783-001267eb754e\",\r\n    \"name\": \"Update Name 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7287/client/update",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"client",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удалить клиента",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7287/client/delete?id=6a1f8dfb-a94a-43b1-b8c3-4b20e291c036",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"client",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "6a1f8dfb-a94a-43b1-b8c3-4b20e291c036"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CRUD для Продукта",
+			"item": [
+				{
+					"name": "Список всех продуктов",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7287/product/all",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"product",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создать продукт",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Product 12\",\r\n    \"price\": 12.3,\r\n    \"article\": 1231\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7287/product/add",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"product",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Показать продукт",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7287/product/get?id=6e6391de-cff6-4d57-9de2-505f759d2dc3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"product",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "6e6391de-cff6-4d57-9de2-505f759d2dc3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Обновить продукт",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"38d4644c-1473-4644-acf3-2d013ed6a44f\",\r\n    \"title\": \"Update Title 1\",\r\n    \"price\": 99.99,\r\n    \"article\": 111\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7287/product/update",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"product",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удалить продукт",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7287/product/delete?id=19b1507c-3b51-4947-8edb-9a683b52255e",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"product",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "19b1507c-3b51-4947-8edb-9a683b52255e"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CRUD для Заказа",
+			"item": [
+				{
+					"name": "Список всех заказов",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7287/order/all",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"order",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создать заказ",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Description order 3\",\r\n    \"clientId\": \"e00d244e-2a7a-4899-b7a3-21d9996e3f58\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7287/order/add",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"order",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Показать заказ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7287/order/get?id=528ef625-fcbb-455d-9e79-b010a5712a02",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"order",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "528ef625-fcbb-455d-9e79-b010a5712a02"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Обновить заказ",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"ce1075d8-aaa6-477b-9b4f-c788cd5c3cd9\",\r\n    \"description\": \"Description order update client 2\",\r\n    \"clientId\": \"e00d244e-2a7a-4899-b7a3-21d9996e3f58\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7287/order/update",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"order",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удалить заказ",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7287/order/delete?id=ce1075d8-aaa6-477b-9b4f-c788cd5c3cd9",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"order",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "ce1075d8-aaa6-477b-9b4f-c788cd5c3cd9"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CRUD для Заказ-Товара",
+			"item": [
+				{
+					"name": "Список всех заказ-товаров",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7287/order_product/all",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"order_product",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создать заказ-товар",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderId\": \"9dc43090-d814-499f-8de1-172dc337f542\",\r\n    \"productId\": \"6764d835-8016-4544-bcd3-91093e6d5e4e\",\r\n    \"countProducts\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7287/order_product/add",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"order_product",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Показать заказ-товар",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7287/order_product/get?id=6e6391de-cff6-4d57-9de2-505f759d2dc3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"order_product",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "6e6391de-cff6-4d57-9de2-505f759d2dc3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Обновить заказ-товар",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"5e4cadda-f4bf-4bee-a62f-0dca9f39e353\",\r\n    \"countProducts\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7287/order_product/update",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"order_product",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удалить заказ-товар",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7287/order_product/delete?id=5e4cadda-f4bf-4bee-a62f-0dca9f39e353",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"order_product",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5e4cadda-f4bf-4bee-a62f-0dca9f39e353"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Доп логика",
+			"item": [
+				{
+					"name": "Инфа о Заказе",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7287/order/info?id=9dc43090-d814-499f-8de1-172dc337f542",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"order",
+								"info"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "9dc43090-d814-499f-8de1-172dc337f542"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Общая сумма Заказа",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7287/order/receipt?id=9dc43090-d814-499f-8de1-172dc337f542",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7287",
+							"path": [
+								"order",
+								"receipt"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "9dc43090-d814-499f-8de1-172dc337f542"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Домашняя",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7287",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7287"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Авторизация",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7287/login/name",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7287",
+					"path": [
+						"login",
+						"name"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

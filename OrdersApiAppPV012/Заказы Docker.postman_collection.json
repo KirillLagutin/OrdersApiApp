@@ -553,9 +553,15 @@
 					"name": "Инфа о Заказе",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "https://localhost:5005/order/info?id=9dc43090-d814-499f-8de1-172dc337f542",
+							"raw": "https://localhost:5005/order/info?id=703bb5b1-08eb-4a4d-be59-e4e956568d4d",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -568,7 +574,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "9dc43090-d814-499f-8de1-172dc337f542"
+									"value": "703bb5b1-08eb-4a4d-be59-e4e956568d4d"
 								}
 							]
 						}
@@ -579,9 +585,15 @@
 					"name": "Общая сумма Заказа",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "https://localhost:5005/order/receipt?id=9dc43090-d814-499f-8de1-172dc337f542",
+							"raw": "https://localhost:5005/order/receipt?id=703bb5b1-08eb-4a4d-be59-e4e956568d4d",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -594,7 +606,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "9dc43090-d814-499f-8de1-172dc337f542"
+									"value": "703bb5b1-08eb-4a4d-be59-e4e956568d4d"
 								}
 							]
 						}
@@ -615,6 +627,26 @@
 						"localhost"
 					],
 					"port": "5005"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Авторизация",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5005/login/name",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"login",
+						"name"
+					]
 				}
 			},
 			"response": []
