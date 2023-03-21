@@ -31,11 +31,11 @@ CRUD - create read update delete
 
   ### 1. В терминале, из папки решения, создаём и запускаем контейнер: 
   
-      docker compose up -d
+      docker-compose up -d
       
   ### 2. В файле AppDbContext комментируем 29-ю строку и перезапускаем контейнер: 
   
-      docker compose restart
+      docker-compose restart
       
   ### 3. Накатываем миграции на базу: 
   #### для Visual Studio (консоль диспетчера пакетов)
